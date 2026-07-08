@@ -6,8 +6,8 @@ export default function Home() {
       <h1 className="text-xl font-semibold mb-4">Fuma Nama</h1>
 
       <p className="text-sm text-neutral-400">
-        Hello there, I am an open sourcerer from Hong Kong. Currently involved in software
-        development & web design, passionated on a wide spectrum of topics.
+        Hello there, I am an open sourcerer. Currently involved in software development & web
+        design, passionated on a wide spectrum of topics.
         <br />
         <br />
         Besides, I love the joy of creating content, art, and the formation of interactive, graceful

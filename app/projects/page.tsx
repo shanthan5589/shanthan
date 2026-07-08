@@ -32,9 +32,27 @@ const projects: (ProjectProps & { tag: string })[] = [
   },
   {
     tag: "project",
+    name: "FumaDB",
+    description: "Unified interface to interact with databases, designed for backend libraries.",
+    href: "https://fumadb.vercel.app",
+  },
+  {
+    tag: "project",
     name: "Fuma Comment",
     description: "A comment area for your blog.",
     href: "https://fuma-comment.vercel.app",
+  },
+  {
+    tag: "project",
+    name: "Fuma Translate",
+    description: "A tiny UI translations utility, with a Rust-based compiler.",
+    href: "https://translate.fuma-nama.dev",
+  },
+  {
+    tag: "project",
+    name: "Fuma CLI",
+    description: "A library to distribute code; build custom Shadcn-like CLI.",
+    href: "https://cli.fuma-nama.dev",
   },
   {
     tag: "project",
