@@ -20,10 +20,12 @@ export interface APISponsorItem {
 
 export async function GET() {
   const sponsors = await getSponsors();
-  return sponsors.map(
-    (item): APISponsorItem => ({
-      ...item,
-      tierName: tiers.find((tier) => item.tier.monthlyPriceInDollars >= tier.min)?.name,
-    }),
+  return Response.json(
+    sponsors.map(
+      (item): APISponsorItem => ({
+        ...item,
+        tierName: tiers.find((tier) => item.tier.monthlyPriceInDollars >= tier.min)?.name,
+      }),
+    ),
   );
 }
