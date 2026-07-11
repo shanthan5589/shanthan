@@ -1,10 +1,11 @@
-import { Inter } from "next/font/google";
+import { Geist, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/cn";
 import { createMetadata } from "@/lib/metadata";
 import { Main } from "./layout.client";
 
-const inter = Inter({ subsets: ["latin"] });
+const geist = Geist({ subsets: ["latin"] });
+const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" });
 
 export const metadata = createMetadata({
   title: {
@@ -21,7 +22,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn(inter.className, "bg-neutral-950 text-neutral-50 min-h-screen dark")}>
+      <body
+        className={cn(
+          geist.className,
+          mono.variable,
+          "bg-neutral-950 text-neutral-50 min-h-screen dark",
+        )}
+      >
         <Main>{children}</Main>
       </body>
     </html>
