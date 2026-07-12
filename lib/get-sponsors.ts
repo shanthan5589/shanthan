@@ -10,7 +10,7 @@ interface SponsorEntity {
   __typename: "User" | "Organization";
   login: string;
   avatarUrl: string;
-  websiteUrl: string;
+  websiteUrl: string | null;
   name: string;
 }
 

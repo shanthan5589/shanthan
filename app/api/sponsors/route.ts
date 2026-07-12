@@ -1,4 +1,4 @@
-import { TierName, tiers } from "@/app/sponsors/data";
+import { type TierName, tiers } from "@/app/sponsors/data";
 import { getSponsors } from "@/lib/get-sponsors";
 
 export const revalidate = 3600;
@@ -7,7 +7,7 @@ export interface APISponsorItem {
   __typename: "User" | "Organization";
   login: string;
   avatarUrl: string;
-  websiteUrl: string;
+  websiteUrl: string | null;
   name: string;
   tier: {
     monthlyPriceInDollars: number;
