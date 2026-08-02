@@ -1,3 +1,5 @@
+import type { ReactNode } from "react";
+
 export const tiers = [
   {
     name: "Platinum Sponsor",
@@ -15,15 +17,25 @@ export const tiers = [
 
 export type TierName = (typeof tiers)[number]["name"];
 
+export const hidden = new Set(["iamshasha"]);
+
+interface OrganizationAsUserSponsor {
+  websiteUrl: string;
+  asUser: string;
+  name: string;
+  login: string;
+  logo: ReactNode;
+}
+
 /**
  * Users who sponsored with their personal account as an organization
  */
-export const organizationAsUserSponsors = [
+export const organizationAsUserSponsors: OrganizationAsUserSponsor[] = [
   {
-    url: "https://mintlify.com",
+    websiteUrl: "https://mintlify.com",
     asUser: "handotdev",
-    label: "Mintlify",
-    github: "mintlify",
+    name: "Mintlify",
+    login: "mintlify",
     logo: (
       <svg
         viewBox="0 0 103 24"
@@ -58,9 +70,9 @@ export const organizationAsUserSponsors = [
     ),
   },
   {
-    url: "https://github.com/scalar/scalar",
-    label: "Scalar",
-    github: "scalar",
+    websiteUrl: "https://github.com/scalar/scalar",
+    name: "Scalar",
+    login: "scalar",
     asUser: "marclave",
     logo: (
       <>
@@ -76,9 +88,9 @@ export const organizationAsUserSponsors = [
     ),
   },
   {
-    url: "https://launchfa.st",
-    label: "launchfast",
-    github: "launchfast",
+    websiteUrl: "https://launchfa.st",
+    name: "launchfast",
+    login: "launchfast",
     asUser: "rishi-raj-jain",
     logo: (
       <>
@@ -113,9 +125,9 @@ export const organizationAsUserSponsors = [
     ),
   },
   {
-    url: "https://orshot.com",
-    label: "orshot",
-    github: "orshot-hq",
+    websiteUrl: "https://orshot.com",
+    name: "orshot",
+    login: "orshot-hq",
     asUser: "rishi-raj-jain",
     logo: (
       <>

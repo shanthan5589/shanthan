@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import Image from "next/image";
 import { getSponsors, type Sponsor } from "@/lib/get-sponsors";
-import { organizationAsUserSponsors, tiers } from "./data";
+import { hidden, organizationAsUserSponsors, tiers } from "./data";
 import { HeartIcon } from "lucide-react";
 import SponsorsBG from "@/public/sponsor-bg.png";
 import Link from "next/link";
@@ -16,27 +16,29 @@ interface SponsorItem extends Sponsor {
 
 function mapSponsors(result: Sponsor[]): SponsorItem[] {
   return result.flatMap((v) => {
-    let href: string;
-    if (v.websiteUrl)
-      href = v.websiteUrl.startsWith("http") ? v.websiteUrl : `https://${v.websiteUrl}`;
-    else href = `https://github.com/${v.login}`;
-
+    if (hidden.has(v.login)) return [];
     const tierInfo = tiers.find((tier) => v.tier.monthlyPriceInDollars >= tier.min);
     const orgs = organizationAsUserSponsors.filter((entity) => entity.asUser === v.login);
 
     if (orgs.length > 0) {
       return orgs.map((org) => ({
         ...v,
-        href,
+        href: org.websiteUrl,
         tierInfo,
         __typename: "Organization",
-        login: org.github,
-        name: org.label,
-        websiteUrl: org.url,
+        login: org.login,
+        name: org.name,
+        websiteUrl: org.websiteUrl,
         logo: org.logo,
       }));
     }
 
+    let href: string;
+    if (v.websiteUrl) {
+      href = v.websiteUrl.startsWith("http") ? v.websiteUrl : `https://${v.websiteUrl}`;
+    } else {
+      href = `https://github.com/${v.login}`;
+    }
     return { ...v, href, tierInfo };
   });
 }
