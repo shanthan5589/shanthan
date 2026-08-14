@@ -10,8 +10,8 @@ export default function Home() {
         <br />
         <br />
         I spend most of my time learning about LLMs and training them on powerful GPUs, while
-        occasionally making vibe-coded products. I’ve been using WSL to slowly shift toward a
-        Linux-based workflow.
+        occasionally making vibe-coded products. I’ve been using WSL to slowly shift toward
+        Linux-based workflows.
         <br />
         <br />
         Creator of a bunch of ML projects (Mitosis Detector, Event Horizon, AI Fluency Test, Mind
