@@ -6,11 +6,8 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 export function Main({ children }: { children: React.ReactNode }) {
-  const pathname = usePathname();
-  const fullScreen = /^\/(sponsors|playground)\/?/.test(pathname);
-
   return (
-    <main className={cn("px-6 py-8", !fullScreen && "max-w-[600px] mx-auto")}>
+    <main className="max-w-[600px] mx-auto px-6 py-8">
       <Nav />
       {children}
     </main>
@@ -21,12 +18,15 @@ function Nav() {
   return (
     <nav className="flex items-center gap-3 mb-4 max-w-[600px] mx-auto">
       <Link href="/" className="mr-auto shrink-0">
-        <Image alt="Me" src="/me.jpg" width="40" height="40" className="size-8 rounded-full" />
+        <Image
+          alt="Shanthan"
+          src="/shanthan-profile.png"
+          width="40"
+          height="40"
+          className="size-8 rounded-full"
+        />
       </Link>
       <NavLink href="/projects">Projects</NavLink>
-      <NavLink href="/playground">Playground</NavLink>
-      <NavLink href="/blog">Blog</NavLink>
-      <NavLink href="/sponsors">Sponsors</NavLink>
     </nav>
   );
 }

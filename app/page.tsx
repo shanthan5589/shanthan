@@ -3,29 +3,23 @@ import type { ReactNode } from "react";
 export default function Home() {
   return (
     <article>
-      <h1 className="text-xl font-semibold mb-4">Fuma Nama</h1>
+      <h1 className="text-xl font-semibold mb-4">Shanthan</h1>
 
       <p className="text-sm text-neutral-400">
-        Hello there, I am an open sourcerer. Currently involved in software development & web
-        design, passionated on a wide spectrum of topics.
+        Hi there, I’m Shanthan. 21, CS (AIML) undergrad.
         <br />
         <br />
-        Besides, I love the joy of creating content, art, and the formation of interactive, graceful
-        websites. During my leisure, I also investigate in artificial intelligence technologies.
-        Having fun in coding!
+        I spend most of my time learning about LLMs and training them on powerful GPUs, while
+        occasionally making vibe-coded products. I’ve been using WSL to slowly shift toward a
+        Linux-based workflow.
         <br />
         <br />
-        Creator of{" "}
-        <a
-          href="https://fumadocs.vercel.app"
-          className="text-neutral-50 font-medium underline hover:text-neutral-200"
-        >
-          Fumadocs
-        </a>
-        , a Next.js lover, an anime maniac, and contributor of many libraries I love.
+        Creator of a bunch of ML projects (Mitosis Detector, Event Horizon, AI Fluency Test, Mind
+        Archive and more), perpetual learner, and someone who just likes turning ideas into working
+        code.
       </p>
       <div className="flex gap-3 border-t mt-4 pt-4 border-neutral-800">
-        <Badge href="https://github.com/fuma-nama">
+        <Badge href="https://github.com/shanthan5589">
           <svg role="img" viewBox="0 0 24 24" className="size-4">
             <title>GitHub</title>
             <path
@@ -35,7 +29,7 @@ export default function Home() {
           </svg>
           Github
         </Badge>
-        <Badge href="https://twitter.com/fuma_nama">
+        <Badge href="https://x.com/shanthan5589">
           <svg role="img" viewBox="0 0 24 24" className="size-4">
             <title>X</title>
             <path

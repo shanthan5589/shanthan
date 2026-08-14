@@ -2,154 +2,63 @@ import { createMetadata } from "@/lib/metadata";
 
 export const metadata = createMetadata({
   title: "Projects",
-  description: "My proud, high-quality treasures.",
+  description: "Machine learning, AI, and software projects built by Shanthan.",
 });
 
-const projects: (ProjectProps & { tag: string })[] = [
+const projects: ProjectProps[] = [
   {
-    tag: "project",
-    name: "Fumadocs",
-    description: "The React.js docs framework.",
-    href: "https://fumadocs.dev",
-  },
-  {
-    tag: "project",
-    name: "Fumapress",
-    description: "A site generator powered by Fumadocs.",
-    href: "https://press.fumadocs.dev",
-  },
-  {
-    tag: "project",
-    name: "Shark Chat",
-    description: "A modern chat app.",
-    href: "https://shark-chat.vercel.app",
-  },
-  {
-    tag: "project",
-    name: "Tegami",
-    description: "A tool to manage changelogs, versioning, and publishing in monorepo.",
-    href: "https://tegami.fuma-nama.dev",
-  },
-  {
-    tag: "project",
-    name: "FumaDB",
-    description: "Unified interface to interact with databases, designed for backend libraries.",
-    href: "https://fumadb.vercel.app",
-  },
-  {
-    tag: "project",
-    name: "Fuma Comment",
-    description: "A comment area for your blog.",
-    href: "https://fuma-comment.vercel.app",
-  },
-  {
-    tag: "project",
-    name: "Fuma Translate",
-    description: "A tiny UI translations utility, with a Rust-based compiler.",
-    href: "https://translate.fuma-nama.dev",
-  },
-  {
-    tag: "project",
-    name: "Fuma CLI",
-    description: "A library to distribute code; build custom Shadcn-like CLI.",
-    href: "https://cli.fuma-nama.dev",
-  },
-  {
-    tag: "project",
-    name: "Fuma Lofi",
-    description: "Some nice Lofi music and a music player.",
-    href: "https://fuma-lofi.vercel.app",
-  },
-  {
-    tag: "project",
-    name: "next-validate-link",
-    description: "An utility to validate links in your Markdown files.",
-    href: "https://next-validate-link.vercel.app",
-  },
-  {
-    tag: "project",
-    name: "Fuma Content",
-    description: "A library for handling content.",
-    href: "https://fuma-content.vercel.app",
-  },
-  {
-    tag: "project",
-    name: "Discord FP",
-    description: "A Beautiful Application Command Library for Discord.js and Discordeno.",
-    href: "https://github.com/fuma-nama/discord-fp",
-  },
-  {
-    tag: "toy",
-    name: "Kanji Animated",
+    name: "microGPT",
     description:
-      "Animation inspired by 命に嫌われている MV (by Iori Kanzaki), based on Canvas API.",
-    href: "https://kanji-animated.vercel.app",
+      "A character-level GPT-style language model built from scratch with PyTorch, trained to generate Shakespeare-like dialogue.",
+    href: "https://github.com/shanthan5589/microGPT",
   },
   {
-    tag: "toy",
-    name: "No Deploy",
-    description: "Robust and scalable hosting platform that supports nothing.",
-    href: "https://nodeploy-neon.vercel.app",
+    name: "Mitosis Detector",
+    description:
+      "A two-stage YOLO and EfficientNet-B2 pipeline that identifies mitotic figures in whole-slide pathology images, achieving an F1 score of 0.774 on held-out slides.",
+    href: "https://github.com/shanthan5589/mitosis-detector",
   },
   {
-    tag: "toy",
-    name: "Shot on Stone",
-    description: "View your photo carved on a stone.",
-    href: "https://shot-on-stone.vercel.app",
+    name: "Event Horizon",
+    description:
+      "A retrieval-augmented Q&A system that makes black-hole physics literature easier to explore through natural-language questions.",
+    href: "https://huggingface.co/spaces/shanthan5589/event-horizon",
   },
   {
-    tag: "toy",
-    name: "Fuma Space",
-    description: "My little project exploring Nuxt.js and Vue.js",
-    href: "https://fuma-space.vercel.app",
+    name: "AI Fluency Test",
+    description:
+      "An LLM-powered platform that creates realistic work scenarios from a resume and evaluates practical AI tool-use strategy on a 0–100 rubric.",
+    href: "https://ai-fluency-test.vercel.app/",
   },
   {
-    tag: "toy",
-    name: "Simple Game",
-    description: "A thing to waste your time.",
-    href: "https://simple-game-pi.vercel.app",
+    name: "Edu",
+    description:
+      "An AI proficiency assessment platform that measures how effectively users apply AI tools across five practical domains.",
+    href: "https://edu.castorai.in/",
   },
   {
-    tag: "toy",
-    name: "Astro Blog",
-    description: "An example blog using Astro",
-    href: "https://fuma-blog.vercel.app",
+    name: "Mind Archive",
+    description:
+      "An AI-assisted journaling app for capturing thoughts, revisiting entries, and discovering patterns and connections across ideas.",
+    href: "https://archive.shanthan.dev",
   },
   {
-    tag: "toy",
-    name: "No Deploy CLI",
-    description: "A CLI tool for No Deploy written in Rust.",
-    href: "https://github.com/fuma-nama/nodeploy-cli",
+    name: "Product Price Tracker",
+    description:
+      "A price-intelligence tool that tracks Indian e-commerce listings, sends price-drop alerts, and predicts future prices with an LSTM model.",
+    href: "https://product-price-tracker-sjlo.onrender.com",
   },
   {
-    tag: "experimental",
-    name: "Discord Bot Template",
-    description: "A Discord bot template with dashboard and documentation.",
-    href: "https://github.com/fuma-nama/discord-bot-template",
+    name: "House Price Prediction",
+    description:
+      "An end-to-end Kaggle regression pipeline using feature-aware preprocessing and XGBoost, reaching the public leaderboard's top 300.",
+    href: "https://github.com/shanthan5589/house-price-prediction",
   },
   {
-    tag: "legacy",
-    name: "Old Portfolio",
-    description: "My outdated yet well-designed portfolio.",
-    href: "https://money-portfolio.vercel.app/",
-  },
-  {
-    tag: "legacy",
-    name: "JDAK",
-    description: "A fast, flexible command framework for JDA written in Kotlin.",
-    href: "https://github.com/fuma-nama/jdak",
-  },
-  {
-    tag: "legacy",
-    name: "Omagize",
-    description: "A modern and powerful web chat app written in Java & TypeScript.",
-    href: "https://github.com/fuma-nama/omagize",
-  },
-  {
-    tag: "legacy",
-    name: "Discord UI",
-    description: "Write user interfaces for Discord bot.",
-    href: "https://github.com/fuma-nama/discord-ui",
+    name: "Portfolio Website",
+    description:
+      "A fast, minimal personal website designed to present my profile, highlight current projects, and make it easy to connect.",
+    href: "https://github.com/shanthan5589/shanthan5589.github.io",
   },
 ];
 
@@ -158,43 +67,12 @@ export default function Page() {
     <article className="flex flex-col gap-2">
       <h1 className="font-semibold text-xl">Projects</h1>
       <p className="text-sm text-neutral-400 mb-2">
-        Nice frameworks, libraries, web apps. My proud, high-quality harvests.
+        A selection of my work across machine learning, AI, and software development.
       </p>
       <div className="flex flex-col divide-y divide-neutral-800 mb-6">
-        {projects
-          .filter((p) => p.tag === "project")
-          .map((p) => (
-            <Project key={p.href} {...p} />
-          ))}
-      </div>
-
-      <h2 className="font-semibold text-lg">My Toys</h2>
-      <p className="text-sm text-neutral-400 mb-2">Fun projects.</p>
-      <div className="flex flex-col divide-y divide-neutral-800 mb-6">
-        {projects
-          .filter((p) => p.tag === "toy")
-          .map((p) => (
-            <Project key={p.href} {...p} />
-          ))}
-      </div>
-
-      <h2 className="font-semibold text-lg">Experimental</h2>
-      <p className="text-sm text-neutral-400 mb-2">Bleeding edge stuffs for testing purposes.</p>
-      <div className="flex flex-col divide-y divide-neutral-800 mb-6">
-        {projects
-          .filter((p) => p.tag === "experimental")
-          .map((p) => (
-            <Project key={p.href} {...p} />
-          ))}
-      </div>
-      <h2 className="font-semibold text-lg">Legacy</h2>
-      <p className="text-sm text-neutral-400 mb-2">My neglected, abandoned projects.</p>
-      <div className="flex flex-col divide-y divide-neutral-800 mb-6">
-        {projects
-          .filter((p) => p.tag === "legacy")
-          .map((p) => (
-            <Project key={p.href} {...p} />
-          ))}
+        {projects.map((project) => (
+          <Project key={project.href} {...project} />
+        ))}
       </div>
     </article>
   );
@@ -211,6 +89,7 @@ function Project(project: ProjectProps) {
     <a
       href={project.href}
       className="group px-4 py-3 -mx-4 rounded-xl text-neutral-400 transition-colors hover:bg-neutral-900 hover:text-neutral-200 hover:transition-none"
+      target="_blank"
       rel="noreferrer noopener"
     >
       <p className="text-sm text-neutral-100 font-medium">{project.name}</p>

@@ -1,6 +1,6 @@
 import type { Metadata } from "next/types";
 
-export const baseUrl = "https://fuma-nama.vercel.app";
+export const baseUrl = "https://shanthan.dev";
 
 export function createMetadata(override: Metadata): Metadata {
   return {
@@ -10,29 +10,13 @@ export function createMetadata(override: Metadata): Metadata {
       title: override.title ?? undefined,
       description: override.description ?? undefined,
       url: baseUrl,
-      images: [
-        {
-          alt: "banner",
-          width: "1200",
-          height: "630",
-          url: "/banner.png",
-        },
-      ],
-      siteName: "Portfolio",
+      siteName: "Shanthan",
       ...override.openGraph,
     },
     twitter: {
-      card: "summary_large_image",
+      card: "summary",
       title: override.title ?? undefined,
       description: override.description ?? undefined,
-      images: [
-        {
-          alt: "banner",
-          width: "1200",
-          height: "630",
-          url: "/banner.png",
-        },
-      ],
       ...override.twitter,
     },
     metadataBase: new URL(baseUrl),

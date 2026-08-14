@@ -1,5 +1,5 @@
-## Fuma Nama
+## Shanthan's Portfolio
 
-Here's the home of my personal website built using Next.js App Router and MDX.
+A minimal personal website built with Next.js and Tailwind CSS.
 
-Welcome to give it a star if you appreciate my work!
+It is deployed at [shanthan.dev](https://shanthan.dev).

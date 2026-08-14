@@ -9,8 +9,8 @@ const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" });
 
 export const metadata = createMetadata({
   title: {
-    absolute: "Fuma Nama",
-    template: "Fuma Nama | %s",
+    absolute: "Shanthan",
+    template: "Shanthan | %s",
   },
   description: "My personal website.",
 });
