@@ -10,7 +10,7 @@ export default function Home() {
         <br />
         <br />
         I spend most of my time learning about LLMs and training them on powerful GPUs, while
-        occasionally making vibe-coded products. I’ve been using WSL to slowly shift toward
+        occasionally making vibe-coded products. I’ve been using WSL to slowly shift towards
         Linux-based workflows.
         <br />
         <br />
