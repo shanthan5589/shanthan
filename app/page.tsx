@@ -14,9 +14,9 @@ export default function Home() {
         Linux-based workflows.
         <br />
         <br />
-        Creator of a bunch of ML projects (Mitosis Detector, Event Horizon, AI Fluency Test, Mind
-        Archive and more), perpetual learner, and someone who just likes turning ideas into working
-        code.
+        Currently building mesoGPT, a 100M paramater model pretrained from scratch 
+        on 1.95B tokens. Before that, I built microGPT and a bunch of ML projects
+        (Mitosis Detector, Event Horizon, and others).
       </p>
       <div className="flex gap-3 border-t mt-4 pt-4 border-neutral-800">
         <Badge href="https://github.com/shanthan5589">
