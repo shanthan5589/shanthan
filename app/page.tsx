@@ -14,7 +14,7 @@ export default function Home() {
         Linux-based workflows.
         <br />
         <br />
-        Currently building mesoGPT, a 100M paramater model pretrained from scratch 
+        Currently building mesoGPT, a 100M parameter model pre-trained from scratch 
         on 1.95B tokens. Before that, I built microGPT and a bunch of ML projects
         (Mitosis Detector, Event Horizon, and others).
       </p>
