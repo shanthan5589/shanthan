@@ -6,16 +6,26 @@ export const metadata = createMetadata({
 });
 
 const projects: ProjectProps[] = [
+
+  {
+    name: "mesoGPT",
+    description:
+      "Implemented a 97.7M-parameter decoder-only Transformer in PyTorch and pretrained it from scratch on 1.95B tokens"
+      + " using a single NVIDIA L40S GPU for 20.8 hours with a training cost of $38.7, achieving a validation BPB of 1.1509.",
+    href: "https://github.com/shanthan5589/mesoGPT",
+  },
   {
     name: "microGPT",
     description:
-      "A character-level GPT-style language model built from scratch with PyTorch, trained to generate Shakespeare-like dialogue.",
+      "Built a 10.8M-parameter character-level Transformer and trained the model on an NVIDIA T4 GPU with a 256-character"
+      + " context window, achieving a validation loss of 1.786.",
     href: "https://github.com/shanthan5589/microGPT",
   },
   {
     name: "Mitosis Detector",
     description:
-      "A two-stage YOLO and EfficientNet-B2 pipeline that identifies mitotic figures in whole-slide pathology images, achieving an F1 score of 0.774 on held-out slides.",
+      "Built a two-stage pipeline combining YOLOv8 with an EfficientNet-B2 classifier trained on hard negatives to detect"
+      +" mitotic figures in histopathology patches extracted from whole-slide images across varying staining protocols.",
     href: "https://github.com/shanthan5589/mitosis-detector",
   },
   {
