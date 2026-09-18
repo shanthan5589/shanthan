@@ -15,8 +15,7 @@ export default function Home() {
         <br />
         <br />
         I recently built mesoGPT, a 97.7M-parameter model pretrained from scratch on 1.95B 
-        tokens. Before that, I built microGPT and a several other ML projects (Mitosis Detector, Event Horizon, and 
-        others).
+        tokens. Before that, I built microGPT and several other ML projects, such as Mitosis Detector and Event Horizon.
       </p>
       <div className="flex gap-3 border-t mt-4 pt-4 border-neutral-800">
         <Badge href="https://github.com/shanthan5589">
