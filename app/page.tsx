@@ -11,12 +11,11 @@ export default function Home() {
         <br />
         I spend most of my time learning about LLMs and training them on powerful GPUs, while
         occasionally building vibe-coded products. I’ve been using WSL to familiarize 
-        myself with basic command-line workflows.
+        myself with command-line workflows.
         <br />
         <br />
         I recently built mesoGPT, a 97.7M-parameter model pretrained from scratch on 1.95B 
-        tokens, and I’m currently learning about fine-tuning techniques. Before that, I 
-        built microGPT and a bunch of ML projects (Mitosis Detector, Event Horizon, and 
+        tokens. Before that, I built microGPT and a several other ML projects (Mitosis Detector, Event Horizon, and 
         others).
       </p>
       <div className="flex gap-3 border-t mt-4 pt-4 border-neutral-800">
