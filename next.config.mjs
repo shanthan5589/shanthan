@@ -3,11 +3,13 @@
 /** @type {import('next').NextConfig} */
 const config = {
   reactStrictMode: true,
-  async rewrites() {
+  async redirects() {
     return [
       {
         source: "/mesoGPT",
-        destination: "/mesoGPT/index.html",
+        destination:
+          "https://medium.com/@shanthan1000/mesogpt-building-and-training-large-language-models-from-scratch-a0a514cb7a3f?sharedUserId=shanthan1000",
+        permanent: true,
       },
     ];
   },
