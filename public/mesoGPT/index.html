@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#ffffff">
+  <title>mesoGPT: Building and training large language models from scratch.</title>
+  <meta name="description" content="What I learned training a 97.7M-parameter decoder-only Transformer on a single NVIDIA L40S.">
+  <link rel="canonical" href="https://mesogpt-field-notes.sunny-emu-1638.chatgpt.site/">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://mesogpt-field-notes.sunny-emu-1638.chatgpt.site/">
+  <meta property="og:title" content="mesoGPT: Building and training large language models from scratch">
+  <meta property="og:description" content="What I learned training a 97.7M-parameter decoder-only Transformer on a single NVIDIA L40S.">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="mesoGPT: Building and training large language models from scratch.">
+  <meta name="twitter:description" content="What I learned training a 97.7M-parameter decoder-only Transformer on a single NVIDIA L40S.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23101526'/%3E%3Cpath d='M15 43V20h7l10 13 10-13h7v23h-8V32l-9 11-9-11v11z' fill='white'/%3E%3C/svg%3E">
+  <style>
+    :root {
+      --ink: #101526;
+      --muted: #596171;
+      --line: #dfe3eb;
+      --soft: #f4f6fa;
+      --accent: #101526;
+      --accent-soft: #eceef2;
+      --serif: Charter, "Bitstream Charter", "Sitka Text", Cambria, Georgia, serif;
+      --sans: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      background: #fff;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: #fff;
+      font-family: var(--serif);
+      font-size: 1rem;
+      line-height: 1.62;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    main {
+      width: min(100% - 2rem, 73rem);
+      margin: 0 auto;
+      padding: clamp(3rem, 6vw, 5rem) 0 clamp(4rem, 8vw, 6rem);
+    }
+
+    article {
+      width: min(100%, 42rem);
+      margin: 0 auto;
+    }
+
+    h1, h2 {
+      font-family: var(--sans);
+      text-wrap: balance;
+    }
+
+    h1 {
+      position: relative;
+      margin: 0 0 2.75rem;
+      font-size: clamp(2rem, 4vw, 2.5rem);
+      font-weight: 700;
+      line-height: 1.12;
+      letter-spacing: -.035em;
+    }
+
+    h2 {
+      margin: 3rem 0 1rem;
+      font-size: clamp(1.25rem, 2.2vw, 1.5rem);
+      font-weight: 680;
+      line-height: 1.25;
+      letter-spacing: -.02em;
+    }
+
+    p { margin: 0 0 1.45rem; }
+
+    h1 + p {
+      color: #2b3344;
+      font-size: 1.0625rem;
+      line-height: 1.62;
+    }
+
+    a {
+      color: #1b45d8;
+      text-decoration-thickness: .08em;
+      text-underline-offset: .15em;
+    }
+
+    a:hover { text-decoration-thickness: .13em; }
+    a:focus-visible { outline: 3px solid var(--accent-soft); outline-offset: 3px; }
+
+    code {
+      border: 1px solid var(--line);
+      border-radius: .22rem;
+      background: var(--soft);
+      padding: .08em .3em;
+      font-family: var(--mono);
+      font-size: .86em;
+    }
+
+    pre {
+      overflow-x: auto;
+      margin: 1.5rem 0 1.75rem;
+      border: 0;
+      border-radius: 6px;
+      background: #f6f8fa;
+      color: #24292f;
+      padding: 1rem;
+      font-family: var(--mono);
+      font-size: .8125rem;
+      line-height: 1.5;
+      tab-size: 4;
+    }
+
+    pre code {
+      border: 0;
+      border-radius: 0;
+      background: none;
+      padding: 0;
+      color: inherit;
+      font-size: inherit;
+    }
+
+    .pipeline {
+      white-space: pre;
+      text-align: left;
+    }
+
+    .equation {
+      margin: 1.25rem 0 1.5rem;
+      border: 0;
+      background: transparent;
+      padding: .35rem 0;
+      overflow-x: auto;
+      font-family: "Cambria Math", "STIX Two Math", "Times New Roman", serif;
+      font-size: 1rem;
+      line-height: 1.7;
+      text-align: center;
+    }
+
+    .equation-line { display: block; white-space: nowrap; }
+
+    .inline-math {
+      display: inline;
+      white-space: nowrap;
+      font-family: "Cambria Math", "STIX Two Math", "Times New Roman", serif;
+    }
+
+    .inline-math sup { font-size: .72em; line-height: 0; }
+
+    ul {
+      margin: 1.1rem 0 1.75rem;
+      padding-left: 1.35rem;
+    }
+
+    li { margin: .35rem 0; padding-left: .25rem; }
+    li::marker { color: var(--accent); }
+
+    .table-wrap {
+      width: calc(100% + 8rem);
+      margin: 2rem -4rem 2.5rem;
+      overflow-x: auto;
+      border-top: 2px solid var(--ink);
+      border-bottom: 1px solid var(--ink);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--sans);
+      font-size: .875rem;
+      line-height: 1.45;
+      font-variant-numeric: tabular-nums lining-nums;
+    }
+
+    th, td {
+      padding: .82rem .75rem;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+      white-space: nowrap;
+    }
+
+    th {
+      color: var(--muted);
+      font-size: .76rem;
+      font-weight: 720;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    tr:last-child td { border-bottom: 0; }
+    td.numeric, th.numeric { text-align: right; }
+
+    .closing-rule {
+      width: 100%;
+      height: 1px;
+      margin: 4.5rem 0 0;
+      border: 0;
+      background: var(--accent);
+    }
+
+    @media (max-width: 62rem) {
+      .table-wrap { width: 100%; margin-inline: 0; }
+    }
+
+    @media (max-width: 42rem) {
+      body { font-size: 1rem; line-height: 1.68; }
+      main { width: min(100% - 2.25rem, 42rem); padding-top: 2.75rem; }
+      h1 { margin-bottom: 2.25rem; }
+      h2 { margin-top: 2.75rem; }
+      pre { margin-inline: 0; padding: .875rem; font-size: .8125rem; }
+      .equation { margin-inline: 0; padding: .25rem 0; font-size: .95rem; }
+      th, td { padding: .72rem .62rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+
+    @media print {
+      body { background: #fff; color: #000; font-size: 11pt; }
+      main { width: 100%; padding: 0; }
+      article { width: 100%; }
+      h1 { font-size: 34pt; }
+      h2 { break-after: avoid; }
+      a { color: inherit; }
+      .table-wrap { width: 100%; margin-inline: 0; overflow: visible; }
+      pre { white-space: pre-wrap; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <article>
+      <h1>mesoGPT: Building and training large language models from scratch.</h1>
+
+      <p>I built mesoGPT to learn about how the main parts of language-model training work together and along the way, I worked with tokenizers, data pipelines, model architectures, compute planning, cost estimations, and efficiency.</p>
+
+      <p>The current model is a 97.7M-parameter decoder-only Transformer trained on a single NVIDIA L40S. It is not intended to compete with production language models, and it does not introduce a new architecture. The purpose is to build a system large enough for training and systems problems to appear, while remaining small enough to inspect, measure, and run without a distributed cluster.</p>
+
+      <h2>What “from scratch” means here</h2>
+
+      <p>“Training a language model from scratch” can mean several different things, so it is useful to be precise.</p>
+
+      <p>For this project, it means that the tokenizer was trained separately, the model began training from randomly initialized weights, and the Transformer architecture, data pipeline, training loop, evaluation, checkpointing, and experiment tracking were assembled in PyTorch.</p>
+
+      <p>It does not mean that every underlying operation was implemented from first principles. mesoGPT relies on PyTorch, CUDA, rustbpe, tiktoken, PyArrow, and an existing text dataset. I did not write custom CUDA kernels or implement Flash Attention itself.</p>
+
+      <p>That distinction matters. The goal was to understand how the pieces of language-model training fit together, not to reproduce every layer of the software stack.</p>
+
+      <h2>The complete pipeline</h2>
+
+      <p>The project follows a relatively conventional pretraining pipeline:</p>
+
+      <pre class="pipeline"><code>ClimbMix Parquet shards
+        ↓
+Byte-level BPE tokenizer
+        ↓
+Streaming token dataloader
+        ↓
+Decoder-only Transformer
+        ↓
+Pretraining and validation
+        ↓
+Checkpoint and metadata
+        ↓
+Autoregressive text generation</code></pre>
+
+      <p>None of these stages is especially mysterious in isolation. The difficulty comes from making them work together.</p>
+
+      <p>The tokenizer’s vocabulary size determines the model’s embedding and output dimensions. Choosing the right vocabulary size is crucial for balancing model capacity and training efficiency. The dataloader must produce correctly shifted input and target sequences. The training loop must handle gradient accumulation, mixed precision, and evaluation without introducing instability. Checkpointing must capture the model state, optimizer state, and training metadata. Finally, the generation interface must correctly use the trained model to produce coherent text.</p>
+
+      <p>So we have to make sure all components work together without introducing bugs or<br>numerical instability. That is the essence of training a language model from scratch.</p>
+
+      <h2>Starting with the tokenizer</h2>
+
+      <p>Before training the language model, I had to train a tokenizer.</p>
+
+      <p>The tokenizer is a byte-level BPE tokenizer with a fixed vocabulary of 16,384 tokens. <code>rustbpe</code> is used to learn the vocabulary, while <code>tiktoken</code> provides fast encoding and decoding. Nine special tokens are reserved for possible later use.</p>
+
+      <p>The experiment trained eleven tokenizers using corpus sizes ranging from 25 million to 500 million characters. Each tokenizer was evaluated on the same held-out shard using:</p>
+
+      <ul>
+        <li>Characters per token</li>
+        <li>UTF-8 bytes per token</li>
+        <li>Tokens per word</li>
+        <li>Total validation tokens produced</li>
+      </ul>
+
+      <p>The expectation was straightforward: more tokenizer-training text should improve held-out compression, but the improvement should eventually flatten.</p>
+
+      <p>That is roughly what happened.</p>
+
+      <p>The tokenizer trained on 450M characters produced the best measured result, reducing the held-out corpus to 57,613,409 tokens. However, most of the gain had already appeared much earlier. The 250M-character tokenizer captured approximately 97.2% of the total token reduction observed between the 25M and 450M conditions.</p>
+
+      <p>Training on 250M characters took 19.05 seconds. Training on 450M took 32.75 seconds, while reducing the validation output by only another 6,246 tokens.</p>
+
+      <p>The results were also not perfectly monotonic. The 400M and 500M conditions were slightly worse than nearby smaller conditions.</p>
+
+      <p>The useful result was not that 450M was a universally correct training size. It was that tokenizer compression showed clear diminishing returns under this particular vocabulary, dataset, and evaluation setup.</p>
+
+      <h2>The model</h2>
+
+      <p>The baseline model is a decoder-only Transformer with the following configuration:</p>
+
+      <div class="table-wrap" role="region" aria-label="Model configuration" tabindex="0">
+        <table>
+          <thead><tr><th>Component</th><th class="numeric">Configuration</th></tr></thead>
+          <tbody>
+            <tr><td>Parameters</td><td class="numeric">97,655,296</td></tr>
+            <tr><td>Transformer blocks</td><td class="numeric">12</td></tr>
+            <tr><td>Model dimension</td><td class="numeric">768</td></tr>
+            <tr><td>Attention heads</td><td class="numeric">12</td></tr>
+            <tr><td>Head dimension</td><td class="numeric">64</td></tr>
+            <tr><td>Context length</td><td class="numeric">1,024</td></tr>
+            <tr><td>Vocabulary size</td><td class="numeric">16,384</td></tr>
+            <tr><td>Activation</td><td class="numeric">GELU</td></tr>
+            <tr><td>Dropout</td><td class="numeric">0.1</td></tr>
+            <tr><td>Positional encoding</td><td class="numeric">Rotary embeddings</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>The implementation uses Pre-LayerNorm blocks, a fused QKV projection, rotary positional embeddings, and tied token-embedding and language-model-head weights.</p>
+
+      <pre><code>QKᵀ → scaling → causal mask → softmax → dropout → multiply by V</code></pre>
+
+      <p>This makes the operation easy to inspect, although—as the later performance experiment showed  that it is not an efficient way to execute attention in this manner.</p>
+
+      <h2>Planning the training run</h2>
+
+      <p>I used a tokens/parameter ratio of approximately 20, inspired from the<br>Chinchilla scaling Laws</p>
+
+      <div class="equation" aria-label="97,655,296 parameters times 20 is approximately 1.953 billion tokens">
+        <span class="equation-line">97,655,296 parameters × 20</span>
+        <span class="equation-line">≈ 1.953 billion tokens</span>
+      </div>
+
+      <p>With a global batch of 512 sequences and a context length of 1,024, each optimizer update processes:</p>
+
+      <div class="equation" aria-label="512 times 1,024 equals 524,288 tokens">
+        <span class="equation-line">512 × 1,024 = 524,288 tokens</span>
+      </div>
+
+      <p>Reaching the planned budget therefore required 3,726 optimizer updates.</p>
+
+      <p>The micro-batch contained 16 sequences. 32 gradient-accumulation steps were used to reach the global batch size of 512 without requiring the entire batch to fit in GPU memory at once.</p>
+
+      <p>Training used AdamW, BF16 mixed precision, 40 warmup steps, and a cosine learning-rate schedule from a peak of <span class="inline-math">3 × 10<sup>−4</sup></span> to <span class="inline-math">3 × 10<sup>−5</sup></span>.</p>
+
+      <h2>The baseline run</h2>
+
+      <p>The full baseline run completed on one NVIDIA L40S in 20 hours, 47 minutes, and 48 seconds. The measured rental cost was $38.70.</p>
+
+      <p>The best checkpoint appeared at optimizer step 3,720:</p>
+
+      <div class="table-wrap" role="region" aria-label="Baseline results" tabindex="0">
+        <table>
+          <thead><tr><th>Metric</th><th class="numeric">Result</th></tr></thead>
+          <tbody>
+            <tr><td>Tokens processed</td><td class="numeric">1,950,351,360</td></tr>
+            <tr><td>Training loss</td><td class="numeric">3.5266</td></tr>
+            <tr><td>Validation loss</td><td class="numeric">3.5299</td></tr>
+            <tr><td>Training BPB</td><td class="numeric">1.1508</td></tr>
+            <tr><td>Validation BPB</td><td class="numeric">1.1509</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>The final step was slightly worse, so the checkpointing code correctly retained the step-3,720 model.</p>
+
+      <p>Bits per byte, or BPB, is useful when evaluating models with a custom tokenizer. Cross entropy loss depends on number of tokens generated, and number of tokens generated for a fixed text depends on the compression of a tokenizer. So BPB was used to calculate the loss, making the result independent of one tokenizer’s compression.</p>
+
+      <p>Training and validation loss remained very close throughout the run. The validation shard came from the same source distribution as the training shards, so similar curves are reasonable. They were calculated from different data, but their closeness should not be interpreted as evidence of broad generalization.</p>
+
+      <p>The run established that the implementation could train a roughly 100M-parameter model stably.</p>
+
+      <h2>GPU utilization was not the same as efficiency</h2>
+
+      <p>The baseline reported an average GPU utilization of 96.4%, with the GPU near 100% active utilization for much of the run. At first glance, that sounds efficient.</p>
+
+      <p>However, the estimated end-to-end model FLOP utilization was only 4.22%.</p>
+
+      <p>These measurements are not contradictory. GPU utilization usually indicates whether the device is busy. It does not indicate how close the arithmetic workload is to the GPU’s theoretical capacity. A GPU can remain busy while spending substantial time on moving intermediate tensors, launching kernels etc.</p>
+
+      <p>The explicit attention implementation was a likely source of the problem. With a context length of 1,024, it constructs the full attention-score tensor, applies a causal mask, runs softmax, and stores intermediate results needed for backpropagation. That is readable, but expensive in both memory traffic and storage.</p>
+
+      <h2>Testing PyTorch’s optimized attention path</h2>
+
+      <p>The next experiment replaced the explicit attention sequence with PyTorch’s <code>scaled_dot_product_attention</code> API:</p>
+
+      <pre><code>torch.nn.functional.scaled_dot_product_attention(
+    q,
+    k,
+    v,
+    dropout_p=...,
+    is_causal=True,
+)</code></pre>
+
+      <p>The experiment logs indicated that PyTorch selected its built-in Flash Attention backend for the tested configuration.</p>
+
+      <p>To be clear, I did not implement Flash Attention. I changed the model to use PyTorch’s SDPA.</p>
+
+      <p>This was a performance benchmark, not another complete pretraining run. The architecture, parameter count, global batch, context length, and precision remained unchanged. Micro-batch sizes of 16, 32, and 64 were tested over short runs.</p>
+
+      <p>For an apples-to-apples comparison, the reported throughput and MFU excluded evaluation and used optimizer-update time only:</p>
+
+      <div class="table-wrap" role="region" aria-label="Attention performance comparison" tabindex="0">
+        <table>
+          <thead>
+            <tr><th>Attention path</th><th class="numeric">Micro-batch</th><th class="numeric">Update time</th><th class="numeric">Throughput</th><th class="numeric">Training-only MFU</th><th class="numeric">Peak memory</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Explicit</td><td class="numeric">16</td><td class="numeric">17.16 s</td><td class="numeric">30,553 tok/s</td><td class="numeric">4.94%</td><td class="numeric">27,969 MiB</td></tr>
+            <tr><td>PyTorch SDPA</td><td class="numeric">16</td><td class="numeric">4.20 s</td><td class="numeric">124,831 tok/s</td><td class="numeric">20.20%</td><td class="numeric">12,457 MiB</td></tr>
+            <tr><td>PyTorch SDPA</td><td class="numeric">32</td><td class="numeric">4.71 s</td><td class="numeric">111,314 tok/s</td><td class="numeric">18.01%</td><td class="numeric">21,715 MiB</td></tr>
+            <tr><td>PyTorch SDPA</td><td class="numeric">64</td><td class="numeric">5.11 s</td><td class="numeric">102,600 tok/s</td><td class="numeric">16.60%</td><td class="numeric">42,369 MiB</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>The best configuration was still the smallest tested micro-batch size: 16 sequences.</p>
+
+      <p>Relative to the explicit implementation, it delivered approximately 4.09 times the throughput. Increasing the micro-batch beyond 16 made both MFU and throughput worse in this setup.</p>
+
+      <p>That result is a useful reminder that using larger micro-batch sizes do not automatically improve hardware efficiency. Large micro-batch sizes increase memory traffic and automatically reduce MFU and throughput.</p>
+
+      <p>The 4.94% baseline MFU in this table differs from the earlier 4.22% figure because the two numbers answer different questions. The former measures training-only optimizer update time for the benchmark comparison. The latter uses the wall-clock duration of the complete baseline run, including evaluation and other overhead. Keeping those definitions separate helps us to make a fair comparison.</p>
+
+      <h2>What I learned</h2>
+
+      <p>The project reinforced several lessons.</p>
+
+      <p>First, tokenizer design is part of model design. Vocabulary size determines how much text fits into a fixed number of tokens and how much compute is required to process a corpus. It should not be treated as an unrelated preprocessing detail.</p>
+
+      <p>Second, end-to-end accounting matters. Parameter count alone does not determine the cost of a run. Evaluation frequency, checkpointing, and data loading all affect runtime.</p>
+
+      <p>Third, high device utilization is not proof of high model throughput. GPU telemetry and MFU describe different aspects of the system, and both are needed to understand performance.</p>
+
+      <h2>What the project does not establish</h2>
+
+      <p>There are some limitations to keep in view.</p>
+
+      <p>The model has not been instruction-tuned or aligned, and it should not be presented as a chat model. Its validation loss demonstrates that next-token pretraining worked, it does not establish factual reliability, reasoning ability, or usefulness in deployment.</p>
+
+      <p>The project also uses existing frameworks, libraries, and data. Its contribution is the implementation and study of a complete training pipeline at a practical scale, not a new optimizer, dataset, attention algorithm, or model architecture.</p>
+
+      <h2>Closing thoughts</h2>
+
+      <p>mesoGPT did not produce a frontier model, and that was never its purpose.</p>
+
+      <p>What it produced was a concrete understanding of how a language model moves from raw text to a trained checkpoint: how a tokenizer changes the compute budget, how GPU utilization can be misleading, and how a single implementation choice in attention can change MFU and throughput by several times.</p>
+
+      <p>For me, that is the value of building at this scale. The model is large enough that the engineering is real, but small enough that the entire system can still be understood.</p>
+
+      <p>If you have any questions, I recommend using <a href="https://deepwiki.com/shanthan5589/mesoGPT">DeepWiki</a> to get answers in a structured and organized manner.</p>
+
+      <p>The code, experiment reports, configurations, logs, and checkpoints are available in the <a href="https://github.com/shanthan5589/mesoGPT">mesoGPT</a> repository.</p>
+
+      <hr class="closing-rule">
+    </article>
+  </main>
+</body>
+</html>
