@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "dotenv -e .env.local -- prisma generate && next build",
     "start": "next start",
     "format": "oxfmt",
     "types:check": "tsc --noEmit",
