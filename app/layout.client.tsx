@@ -27,6 +27,7 @@ function Nav() {
         />
       </Link>
       <NavLink href="/projects">Projects</NavLink>
+      <NavLink href="/blog">Blog</NavLink>
     </nav>
   );
 }
