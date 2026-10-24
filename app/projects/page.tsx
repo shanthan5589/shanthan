@@ -68,7 +68,7 @@ const projects: ProjectProps[] = [
     name: "Portfolio Website",
     description:
       "A fast, minimal personal website designed to present my profile, highlight current projects, and make it easy to connect.",
-    href: "https://github.com/shanthan5589/shanthan5589.github.io",
+    href: "https://github.com/shanthan5589/shanthan",
   },
 ];
 
