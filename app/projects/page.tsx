@@ -74,12 +74,12 @@ const projects: ProjectProps[] = [
 
 export default function Page() {
   return (
-    <article className="flex flex-col gap-2">
-      <h1 className="font-semibold text-xl">Projects</h1>
-      <p className="text-sm text-neutral-400 mb-2">
+    <article className="editorial-content listing-page">
+      <h1 className="page-title">Projects</h1>
+      <p className="page-intro">
         A selection of my work across machine learning, AI, and software development.
       </p>
-      <div className="flex flex-col divide-y divide-neutral-800 mb-6">
+      <div className="project-list">
         {projects.map((project) => (
           <Project key={project.href} {...project} />
         ))}
@@ -98,12 +98,12 @@ function Project(project: ProjectProps) {
   return (
     <a
       href={project.href}
-      className="group px-4 py-3 -mx-4 rounded-xl text-neutral-400 transition-colors hover:bg-neutral-900 hover:text-neutral-200 hover:transition-none"
+      className="project-list-item"
       target="_blank"
       rel="noreferrer noopener"
     >
-      <p className="text-sm text-neutral-100 font-medium">{project.name}</p>
-      <p className="text-sm">{project.description}</p>
+      <h2>{project.name}</h2>
+      <p>{project.description}</p>
     </a>
   );
 }

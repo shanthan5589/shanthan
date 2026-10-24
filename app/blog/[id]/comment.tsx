@@ -9,7 +9,7 @@ export function CommentsWithAuth({ page }: { page: string }) {
         type: "api",
         signIn: () => void signIn("github"),
       }}
-      className="mt-4 -mx-6 sm:-mx-3 overflow-hidden"
+      className="comments"
       page={page}
     />
   );

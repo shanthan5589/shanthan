@@ -341,9 +341,9 @@ Autoregressive text generation`}
             rel="noopener noreferrer"
             className="underline underline-offset-2"
           >
-            mesoGPT repository.
+            mesoGPT
           </a>
-          .
+          {" "}repository.
         </p>
       </>
     ),

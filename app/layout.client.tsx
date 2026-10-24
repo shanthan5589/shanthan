@@ -1,67 +1,50 @@
 "use client";
-import { cn } from "@/lib/cn";
+
 import { usePathname } from "next/navigation";
-import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
 
 export function Main({ children }: { children: React.ReactNode }) {
   return (
-    <main className="max-w-[600px] mx-auto px-6 py-8">
+    <main className="site-shell">
       <Nav />
-      {children}
+      <section className="site-content">{children}</section>
     </main>
   );
 }
 
 function Nav() {
   return (
-    <nav className="flex items-center gap-3 mb-4 max-w-[600px] mx-auto">
-      <Link href="/" className="mr-auto shrink-0">
-        <Image
-          alt="Shanthan"
-          src="/shanthan-profile.png"
-          width="40"
-          height="40"
-          className="size-8 rounded-full"
-        />
-      </Link>
-      <NavLink href="/projects">Projects</NavLink>
-      <NavLink href="/blog">Blog</NavLink>
-    </nav>
+    <header className="site-header">
+      <p className="site-name">
+        <Link href="/" className="site-title">
+          Shanthan
+        </Link>
+      </p>
+      <nav aria-label="Main navigation">
+        <ul>
+          <li>
+            <NavLink href="/projects">Projects</NavLink>
+          </li>
+          <li>
+            <NavLink href="/blog">Blog</NavLink>
+          </li>
+        </ul>
+      </nav>
+    </header>
   );
 }
 
 function NavLink({ href, children }: { href: string; children: React.ReactNode }) {
   const pathname = usePathname();
   const active = pathname === href || pathname.startsWith(href + "/");
-  const linkRef = useRef<HTMLAnchorElement>(null);
-  const [width, setWidth] = useState<string | number>("100%");
-
-  useEffect(() => {
-    if (!linkRef.current) return;
-
-    setWidth(linkRef.current.clientWidth);
-  }, []);
 
   return (
     <Link
-      ref={linkRef}
       href={href}
-      className={cn(
-        "relative text-neutral-400 text-sm transition-colors hover:text-neutral-200",
-        active && "text-neutral-50",
-      )}
+      className="site-nav-link"
+      aria-current={active ? "page" : undefined}
     >
       {children}
-      <div
-        className="absolute h-px bottom-0 inset-x-0 bg-neutral-200"
-        style={{
-          width: active ? width : 0,
-          transition: "width 500ms",
-        }}
-        role="none"
-      />
     </Link>
   );
 }

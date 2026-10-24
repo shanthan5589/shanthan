@@ -11,18 +11,18 @@ export default function Page() {
   const posts = blogPosts.toSorted((a, b) => Date.parse(b.date) - Date.parse(a.date));
 
   return (
-    <main>
-      <h1 className="font-semibold text-xl mb-2">Blog</h1>
-      <p className="text-sm text-neutral-400 mb-4">Articles and blog posts.</p>
+    <article className="editorial-content listing-page">
+      <h1 className="page-title">Blog</h1>
+      <p className="page-intro">Articles and blog posts.</p>
       {posts.length > 0 ? (
-        <div className="flex flex-col gap-2">
+        <div className="post-list">
           {posts.map((post) => (
             <Card key={post.slug} {...post} />
           ))}
         </div>
       ) : (
-        <p className="text-sm text-neutral-500">No posts yet.</p>
+        <p className="muted">No posts yet.</p>
       )}
-    </main>
+    </article>
   );
 }
