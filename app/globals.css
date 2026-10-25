@@ -403,12 +403,12 @@ a:focus-visible {
   .site-header {
     flex-wrap: wrap;
     gap: 16px;
-    margin: 28px 0 44px;
+    margin: 24px 0 36px;
   }
 
   .site-name {
-    font-size: 26px;
-    line-height: 32px;
+    font-size: 24px;
+    line-height: 30px;
   }
 
   .site-header nav ul {
@@ -418,10 +418,29 @@ a:focus-visible {
     line-height: 21px;
   }
 
+  .site-content {
+    margin-bottom: 0;
+    padding-bottom: calc(96px + env(safe-area-inset-bottom));
+  }
+
+  .editorial-content {
+    font-size: 17px;
+    line-height: 28px;
+  }
+
+  .editorial-content p,
+  .editorial-content blockquote,
+  .editorial-content pre,
+  .editorial-content ul,
+  .editorial-content ol,
+  .editorial-content figure {
+    margin-bottom: 24px;
+  }
+
   .editorial-content .page-title,
   .editorial-content .post-title {
-    font-size: 34px;
-    line-height: 40px;
+    font-size: 32px;
+    line-height: 38px;
   }
 
   .post-body h2 {
