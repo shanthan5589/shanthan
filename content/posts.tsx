@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { backpropagationPart1 } from "./backpropagation-part-1";
 
 export interface BlogPost {
   slug: string;
@@ -12,6 +13,13 @@ export interface BlogPost {
 
 
 export const blogPosts: BlogPost[] = [
+  {
+    slug: "backpropagation-part-1",
+    title: "Backpropagation (Part-1)",
+    description: "Part 1 of a series on backpropagation.",
+    date: "2026-03-09",
+    content: backpropagationPart1,
+  },
   {
     slug: "mesogpt",
     title: "mesoGPT",
