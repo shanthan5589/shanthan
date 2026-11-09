@@ -51,6 +51,7 @@ export default function Home() {
           Email
         </Badge>
       </div>
+      {/*
       <p className="contact-note">
         Before messaging, a quick read:{" "}
         <a
@@ -62,6 +63,7 @@ export default function Home() {
         </a>
         .
       </p>
+      */}
     </article>
   );
 }
