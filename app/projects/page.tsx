@@ -22,13 +22,6 @@ const projects: ProjectProps[] = [
     href: "https://github.com/shanthan5589/microGPT",
   },
   {
-    name: "Mitosis Detector",
-    description:
-      "Built a two-stage pipeline combining YOLOv8 with an EfficientNet-B2 classifier trained on hard negatives to detect"
-      +" mitotic figures in histopathology patches extracted from whole-slide images across varying staining protocols.",
-    href: "https://github.com/shanthan5589/mitosis-detector",
-  },
-  {
     name: "Event Horizon",
     description:
       "A retrieval-augmented Q&A system that makes black-hole physics literature easier to explore through natural-language questions.",
@@ -45,6 +38,13 @@ const projects: ProjectProps[] = [
     description:
       "An AI proficiency assessment platform that measures how effectively users apply AI tools across five practical domains.",
     href: "https://edu.castorai.in/",
+  },
+  {
+    name: "Mitosis Detector",
+    description:
+      "Built a two-stage pipeline combining YOLOv8 with an EfficientNet-B2 classifier trained on hard negatives to detect"
+      +" mitotic figures in histopathology patches extracted from whole-slide images across varying staining protocols.",
+    href: "https://github.com/shanthan5589/mitosis-detector",
   },
   {
     name: "Mind Archive",
