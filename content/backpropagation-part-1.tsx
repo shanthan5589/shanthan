@@ -39,6 +39,15 @@ export const backpropagationPart1 = (
 
     <h2>What is Logistic Regression?</h2>
 
+    <div className="flex flex-col items-center">
+      <img
+        src="/images/neuron.png"
+        alt="Diagram of a single neuron"
+        className="max-h-64 max-w-full rounded-lg object-contain"
+      />
+      <p className="text-center italic">Fig: A single neuron.</p>
+    </div>
+
     <p>
       Logistic regression is the simplest neural network possible — a single neuron. It takes an
       input, computes a weighted sum, passes it through a sigmoid activation, and outputs a
@@ -59,24 +68,26 @@ export const backpropagationPart1 = (
 
 
     <ul>
-      <li><strong>X</strong> — input features, shape <code>(n_features, m)</code> where m = number of training examples</li>
-      <li><strong>W</strong> — weights, shape <code>(n_features, 1)</code></li>
-      <li><strong>b</strong> — bias, scalar</li>
-      <li><strong>A</strong> — predicted probability, shape <code>(1, m)</code></li>
-      <li><strong>Y</strong> — true labels, shape <code>(1, m)</code></li>
+      <li>X — input features, shape <code>(n_x, m)</code></li>
+      <li>W — weights, shape <code>(n_x, 1)</code></li>
+      <li>b — bias, scalar</li>
+      <li>A — predicted probability, shape <code>(1, m)</code></li>
+      <li>Y — true labels, shape <code>(1, m)</code></li>
     </ul>
+
+    <p>Where m is the number of training examples and n_x is the number of input features.</p>
 
     <h2>Forward Propagation</h2>
 
     <p><strong>Step 1 — Linear combination:</strong></p>
 
-    <MathBlock expression={String.raw`Z = W^T X + b`} />
+    <MathBlock expression={String.raw`Z = W^T X + b  \qquad \text(1, m)`} />
 
     <p>Each feature is multiplied by its weight, summed up, and a bias is added. This gives a raw score.</p>
 
     <p><strong>Step 2 — Sigmoid activation:</strong></p>
 
-    <MathBlock expression={String.raw`A = \sigma(Z) = \frac{1}{1 + e^{-Z}}`} />
+    <MathBlock expression={String.raw`A = \sigma(Z) = \frac{1}{1 + e^{-Z}}  \qquad \text(1, m)`} />
 
     <p>Sigmoid squashes the raw score into a probability between 0 and 1.</p>
 
@@ -189,7 +200,7 @@ export const backpropagationPart1 = (
 
     <p>For the <InlineMath expression={String.raw`i`} />-th training example, we write this as:</p>
 
-    <MathBlock expression={String.raw`dz^{(i)} = a^{(i)}-y^{(i)}`} />
+    <MathBlock expression={String.raw`\boxed{dz^{(i)} = a^{(i)}-y^{(i)}} \qquad \text(1, m)`} />
 
     <p>This is the key shortcut for a sigmoid output with binary cross-entropy.</p>
 
@@ -215,7 +226,7 @@ export const backpropagationPart1 = (
 
     <p>Averaging the contributions from all <InlineMath expression={String.raw`m`} /> examples gives:</p>
 
-    <MathBlock expression={String.raw`dW = \frac{1}{m}\sum_{i=1}^{m}x^{(i)}dz^{(i)}`} />
+    <MathBlock expression={String.raw`\boxed{dW = \frac{1}{m}dz\,x^{T}}  \qquad \text(1, n_x)`} />
 
     <p><strong>db — change in loss with respect to change in b:</strong></p>
 
@@ -233,7 +244,7 @@ export const backpropagationPart1 = (
 
     <p>Averaging the contributions from all <InlineMath expression={String.raw`m`} /> examples gives:</p>
 
-    <MathBlock expression={String.raw`db = \frac{1}{m}\sum_{i=1}^{m}dz^{(i)}`} />
+    <MathBlock expression={String.raw`\boxed{db = \frac{1}{m}\sum_{i=1}^{m}dz^{(i)}} \qquad \text(1, 1)`} />
 
     <p>
       We divide by m to average the gradient across all training examples — without this, the
@@ -268,9 +279,7 @@ export const backpropagationPart1 = (
 dz = \frac{\partial L}{\partial z} = \frac{\partial L}{\partial a} \cdot \frac{\partial a}{\partial z} = \frac{\partial L}{\partial a} \cdot \sigma'(z)
 `} />
 
-    <MathBlock expression={String.raw`
-dW = \frac{1}{m}\sum_{i=1}^{m}x^{(i)}dz^{(i)}
-`} />
+    <MathBlock expression={String.raw`{dW = \frac{1}{m}dz\,x^{T}}  `} />
 
     <MathBlock expression={String.raw`
 db = \frac{1}{m}\sum_{i=1}^{m}dz^{(i)}

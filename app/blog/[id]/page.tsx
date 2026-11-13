@@ -8,13 +8,15 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
   const { id } = await params;
   const post = blogPosts.find((item) => item.slug === id);
   if (!post) notFound();
+  const isBackpropagationSeries = id.startsWith("backpropagation-part-");
   const updatedAt = new Intl.DateTimeFormat("en-US", {
     dateStyle: "long",
     timeZone: "UTC",
   }).format(new Date(post.date));
 
   return (
-    <>
+    <div className={isBackpropagationSeries ? "series-page" : undefined}>
+      {isBackpropagationSeries ? <BackpropagationSeriesNav currentSlug={id} /> : null}
       <article className="editorial-content blog-post">
         <h1 className="post-title">{post.title}</h1>
         <p className="post-description">{post.description}</p>
@@ -33,6 +35,41 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
         </Link>
       </footer>
       <CommentsWithAuth page={id} />
+    </div>
+  );
+}
+
+const backpropagationParts = [
+  { slug: "backpropagation-part-1", label: "Part 1" },
+  { slug: "backpropagation-part-2", label: "Part 2" },
+  { slug: "backpropagation-part-3", label: "Part 3" },
+] as const;
+
+function BackpropagationSeriesNav({ currentSlug }: { currentSlug: string }) {
+  const links = backpropagationParts.map((part) => (
+    <li key={part.slug}>
+      <Link
+        href={`/blog/${part.slug}`}
+        aria-current={part.slug === currentSlug ? "page" : undefined}
+      >
+        {part.label}
+      </Link>
+    </li>
+  ));
+
+  return (
+    <>
+      <aside className="series-nav-desktop" aria-label="Backpropagation article parts">
+        <p>Backpropagation</p>
+        <ol>{links}</ol>
+      </aside>
+      <details className="series-nav-mobile">
+        <summary>Parts</summary>
+        <nav aria-label="Backpropagation article parts">
+          <p>Backpropagation</p>
+          <ol>{links}</ol>
+        </nav>
+      </details>
     </>
   );
 }

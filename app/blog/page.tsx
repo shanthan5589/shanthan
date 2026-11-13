@@ -8,7 +8,12 @@ export const metadata = createMetadata({
 });
 
 export default function Page() {
-  const posts = blogPosts.toSorted((a, b) => Date.parse(b.date) - Date.parse(a.date));
+  const posts = blogPosts
+    .filter(
+      (post) =>
+        post.slug !== "backpropagation-part-2" && post.slug !== "backpropagation-part-3",
+    )
+    .toSorted((a, b) => Date.parse(b.date) - Date.parse(a.date));
 
   return (
     <article className="editorial-content listing-page">

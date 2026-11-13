@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
 import { backpropagationPart1 } from "./backpropagation-part-1";
+import { backpropagationPart2 } from "./backpropagation-part-2";
+import { backpropagationPart3 } from "./backpropagation-part-3";
 
 export interface BlogPost {
   slug: string;
@@ -15,10 +17,24 @@ export interface BlogPost {
 export const blogPosts: BlogPost[] = [
   {
     slug: "backpropagation-part-1",
-    title: "Backpropagation (Part-1)",
+    title: "Backpropagation in Neural Networks",
     description: "Part 1 of a series on backpropagation.",
     date: "2026-03-09",
     content: backpropagationPart1,
+  },
+  {
+    slug: "backpropagation-part-2",
+    title: "Backpropagation (Part-2)",
+    description: "Part 2 of a series on backpropagation.",
+    date: "2026-03-10",
+    content: backpropagationPart2,
+  },
+  {
+    slug: "backpropagation-part-3",
+    title: "Backpropagation (Part-3)",
+    description: "Part 3 of a series on backpropagation.",
+    date: "2026-03-11",
+    content: backpropagationPart3,
   },
   {
     slug: "mesogpt",
