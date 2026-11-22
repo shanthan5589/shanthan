@@ -22,7 +22,15 @@ export default function Page() {
       {posts.length > 0 ? (
         <div className="post-list">
           {posts.map((post) => (
-            <Card key={post.slug} {...post} />
+            <Card
+              key={post.slug}
+              {...post}
+              description={
+                post.slug === "backpropagation-part-1"
+                  ? "Understanding backpropagation in neural networks."
+                  : post.description
+              }
+            />
           ))}
         </div>
       ) : (

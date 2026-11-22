@@ -147,7 +147,7 @@ export const backpropagationPart2 = (
     <h2>The Rule Used at Every Layer</h2>
 
     <p>
-      Suppose a quantity <InlineMath expression={String.raw`u`} /> influences <InlineMath expression={String.raw`v`} />, and <InlineMath expression={String.raw`v`} /> eventually influences the cost. The chain rule says:
+      Suppose a quantity <InlineMath expression={String.raw`u`} /> influences <InlineMath expression={String.raw`v`} />, and <InlineMath expression={String.raw`v`} /> eventually influences the loss. The chain rule says:
     </p>
 
     <MathBlock expression={String.raw`u \longrightarrow v \longrightarrow J`} />
@@ -159,7 +159,7 @@ export const backpropagationPart2 = (
     <p>
       The first factor is the gradient arriving from later in the network. The second is the
       operation&apos;s local derivative. Backpropagation repeatedly multiplies an incoming gradient by
-      a local derivative.
+      a local gradient.
     </p>
 
     <p>Each layer therefore performs four tasks:</p>
@@ -167,7 +167,7 @@ export const backpropagationPart2 = (
     <ol>
       <li>Receive an incoming gradient from the next layer.</li>
       <li>Compute the local gradients of the layer&apos;s weights and bias.</li>
-      <li>Multiply the incoming gradient by the local derivative.</li>
+      <li>Multiply the incoming gradient by the local gradient.</li>
       <li>Pass the necessary gradient to the previous layer.</li>
     </ol>
 
@@ -364,7 +364,7 @@ export const backpropagationPart2 = (
     <p>
       Let <InlineMath expression={String.raw`L`} /> be the loss function and{" "}
       <InlineMath expression={String.raw`\sigma^{[1]}`} /> be the activation function for the hidden layer and{" "}
-      <InlineMath expression={String.raw`\sigma^{[2]}`} /> be the activation function for the output layer. Then the equations for backpropagation are:
+      <InlineMath expression={String.raw`\sigma^{[2]}`} /> be the activation function for the output layer. Then the equations for forward and backward propagation are:
     </p>
 
     <MathBlock
@@ -403,7 +403,7 @@ export const backpropagationPart2 = (
 
     <p>
       These equations can be scaled to any number of layers. The only difference is that the network can have any loss function and the activation function can be different for each layer.
-      So using these same equation we will try to generalize for any number of layers in the next part of this series.
+      So using these same equations we will try to generalize for any number of layers in the next part of this series.
     </p>
 
   </>

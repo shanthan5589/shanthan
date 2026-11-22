@@ -31,9 +31,12 @@ function InlineMath({ expression }: { expression: string }) {
 export const backpropagationPart3 = (
   <>
 
-  <p>In the previous part, we derived the equations for forward and backpropagation in a two-layer neural network. In this part, we will generalize these equations to any number of layers.</p>
+  <p>In the previous part, we derived the equations for forward and backward pass in a two-layer neural network (one hidden layer). In this part, we will generalize these equations to any number of hidden layers.</p>
 
-  <p>The following equations have been derived in the previous part.</p>
+  <p>I have written all these equations again which are the exact equations we derived in the previous part, so that everything remains in one place and it is easier to understand the generalization of these equations to any number of layers.
+  </p>
+
+  <p>The following equations have been derived in the previous part: </p>
   
   <p>
       Let <InlineMath expression={String.raw`L`} /> be the loss function and{" "}
@@ -87,7 +90,7 @@ export const backpropagationPart3 = (
     <p>
       Let <InlineMath expression={String.raw`L`} /> be the loss function and{" "}
       <InlineMath expression={String.raw`\sigma^{[l]}`} /> be the activation function and <InlineMath expression={String.raw`n_h^{[l]}`} /> be the number of neurons for the{" "}
-      <InlineMath expression={String.raw`l^{\text{th}}`} /> layer, then the equations for forward and backpropagation are:
+      <InlineMath expression={String.raw`l^{\text{th}}`} /> layer, then the equations for forward and backward propagation are:
     </p>
 
     <MathBlock
@@ -115,7 +118,13 @@ export const backpropagationPart3 = (
 
     <p><InlineMath expression={String.raw`dA^{[l-1]}`} /> is passed to the previous layer and becomes the incoming gradient to the previous layer.</p>
 
+    <p>This process continues until the input layer is reached.</p>
 
-    
+    <p>The generalization of the forward and backward propagation equations to any number of layers is straightforward. The only difference is that the network can have any number of hidden layers, and each layer can have a different activation function. Backpropagation therefore is a
+      scalable algorithm that can be applied to neural networks of any depth and complexity.
+    </p>
+
+    <p>When you are using frameworks like TensorFlow and PyTorch, you don't have to write the backpropagation code manually, the backpropagation is done internally using the autograd engine, making it easy to build and train neural networks of any size.</p>
+
   </>
 );

@@ -172,7 +172,7 @@ export const backpropagationPart1 = (
     
     <h2>Backpropagation in Logistic Regression</h2>
 
-    <p>We need to find out how sensitive is the output to changes in the weights and biases.
+    <p>We need to find out how sensitive is the output to changes in the weights and biases (aka gradient of weights and biases).
        We use the <strong>chain rule</strong> to compute how the loss changes with respect to each parameter. </p>
 
     <p><strong>dz — change in loss with respect to change in z:</strong></p>
@@ -200,9 +200,9 @@ export const backpropagationPart1 = (
 
     <p>For the <InlineMath expression={String.raw`i`} />-th training example, we write this as:</p>
 
-    <MathBlock expression={String.raw`\boxed{dz^{(i)} = a^{(i)}-y^{(i)}} \qquad \text(1, m)`} />
+    <MathBlock expression={String.raw`\boxed{dz^{(i)} = a^{(i)}-y^{(i)}} \qquad \text{for } i = 1, 2, \ldots, m`} />
 
-    <p>This is the key shortcut for a sigmoid output with binary cross-entropy.</p>
+    <p>Tip: This is the shortcut for a combination of sigmoid activation and binary cross-entropy loss.</p>
 
     <p><strong>dW — change in loss with respect to change in W:</strong></p>
 
@@ -216,7 +216,7 @@ export const backpropagationPart1 = (
 
     <p>Breaking it down:</p>
 
-    <MathBlock expression={String.raw`\frac{\partial \ell}{\partial z} = a-y`} />
+    <MathBlock expression={String.raw`\frac{\partial \ell}{\partial z} = a-y \quad \text{(as derived above)}`} />
 
     <MathBlock expression={String.raw`\frac{\partial z}{\partial w} = x`} />
     
