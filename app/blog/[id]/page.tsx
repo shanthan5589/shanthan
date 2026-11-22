@@ -9,6 +9,15 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
   const post = blogPosts.find((item) => item.slug === id);
   if (!post) notFound();
   const isBackpropagationSeries = id.startsWith("backpropagation-part-");
+  const footerLink =
+    id === "backpropagation-part-1"
+      ? { href: "/blog/backpropagation-part-2", label: "Next: Part 2" }
+      : id === "backpropagation-part-2"
+        ? { href: "/blog/backpropagation-part-3", label: "Next: Part 3" }
+        : {
+            href: "/blog",
+            label: "Back to blog",
+          };
   const updatedAt = new Intl.DateTimeFormat("en-US", {
     dateStyle: "long",
     timeZone: "UTC",
@@ -28,10 +37,10 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
           <span>{updatedAt}</span>
         </p>
         <Link
-          href="/blog"
+          href={footerLink.href}
           className="back-link"
         >
-          Back to blog
+          {footerLink.label}
         </Link>
       </footer>
       <CommentsWithAuth page={id} />
