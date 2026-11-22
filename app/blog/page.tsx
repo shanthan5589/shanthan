@@ -8,7 +8,12 @@ export const metadata = createMetadata({
 });
 
 export default function Page() {
-  const posts = blogPosts.toSorted((a, b) => Date.parse(b.date) - Date.parse(a.date));
+  const posts = blogPosts
+    .filter(
+      (post) =>
+        post.slug !== "backpropagation-part-2" && post.slug !== "backpropagation-part-3",
+    )
+    .toSorted((a, b) => Date.parse(b.date) - Date.parse(a.date));
 
   return (
     <article className="editorial-content listing-page">
@@ -17,7 +22,15 @@ export default function Page() {
       {posts.length > 0 ? (
         <div className="post-list">
           {posts.map((post) => (
-            <Card key={post.slug} {...post} />
+            <Card
+              key={post.slug}
+              {...post}
+              description={
+                post.slug === "backpropagation-part-1"
+                  ? "Understanding backpropagation in neural networks."
+                  : post.description
+              }
+            />
           ))}
         </div>
       ) : (

@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "@fuma-comment/react/preset.css";
+@import "katex/dist/katex.min.css";
 
 @source "../node_modules/@fuma-comment/react/dist/**/*.js";
 
@@ -385,6 +386,105 @@ a:focus-visible {
 .comments {
   margin-top: 28px;
   overflow: hidden;
+}
+
+.series-page {
+  position: relative;
+}
+
+.series-nav-desktop {
+  position: absolute;
+  top: 0;
+  right: calc(100% + 56px);
+  width: 150px;
+  color: #666;
+  font: 400 14px/22px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+}
+
+.series-nav-desktop p,
+.series-nav-mobile p {
+  margin: 0 0 10px;
+  color: #111;
+  font-weight: 600;
+}
+
+.series-nav-desktop ol,
+.series-nav-mobile ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.series-nav-desktop li + li,
+.series-nav-mobile li + li {
+  margin-top: 6px;
+}
+
+.series-nav-desktop a,
+.series-nav-mobile a {
+  color: #666;
+  text-decoration: none;
+}
+
+.series-nav-desktop a:hover,
+.series-nav-mobile a:hover {
+  color: #111;
+  text-decoration: underline;
+}
+
+.series-nav-desktop a[aria-current="page"],
+.series-nav-mobile a[aria-current="page"] {
+  color: #111;
+  font-weight: 600;
+}
+
+.series-nav-mobile {
+  display: none;
+}
+
+@media screen and (max-width: 1180px) {
+  .series-nav-desktop {
+    display: none;
+  }
+
+  .series-nav-mobile {
+    position: fixed;
+    z-index: 20;
+    bottom: calc(20px + env(safe-area-inset-bottom));
+    left: 20px;
+    display: block;
+    font: 400 14px/22px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      Helvetica, Arial, sans-serif;
+  }
+
+  .series-nav-mobile summary {
+    width: max-content;
+    padding: 7px 12px;
+    border: 1px solid #d8d8d8;
+    border-radius: 4px;
+    color: #111;
+    background: #fdfdfd;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .series-nav-mobile summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .series-nav-mobile nav {
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 0;
+    width: 170px;
+    padding: 14px 16px;
+    border: 1px solid #d8d8d8;
+    border-radius: 4px;
+    background: #fdfdfd;
+    box-shadow: 0 4px 18px rgb(0 0 0 / 12%);
+  }
 }
 
 @media screen and (max-width: 800px) {
