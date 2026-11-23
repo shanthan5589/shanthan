@@ -94,7 +94,7 @@ export const backpropagationPart3 = (
     </p>
 
     <MathBlock
-      expression={String.raw`Z^{[l]} = W^{[l]}X + b^{[l]} \qquad \text(n_h^{[l]}, m)`}
+      expression={String.raw`Z^{[l]} = W^{[l]}A^{[l-1]} + b^{[l]} \qquad \text(n_h^{[l]}, m)`}
     />
 
     <MathBlock
@@ -111,10 +111,12 @@ export const backpropagationPart3 = (
       expression={String.raw`db^{[l]}=\frac{1}{m}\sum_{i=1}^{m}dZ^{[l](i)} \qquad \text(n_h^{[l]}, 1)`}
     />
     <MathBlock
-      expression={String.raw`dA^{[l-1]}=W^{[l]T}dZ^{[l]} \qquad \text(n_h^{[l]}, m)`}
+      expression={String.raw`dA^{[l-1]}=W^{[l]T}dZ^{[l]} \qquad \text(n_h^{[l-1]}, m)`}
     />
 
     <p></p>
+
+    <p>In the third equation above, <InlineMath expression={String.raw`dA^{[l]}`} /> in <InlineMath expression={String.raw`dZ^{[l]}`} />is the gradient received from the next layer. Where as in the last equation, <InlineMath expression={String.raw`dA^{[l-1]}`} />  is the gradient passed to the previous layer.</p>
 
     <p><InlineMath expression={String.raw`dA^{[l-1]}`} /> is passed to the previous layer and becomes the incoming gradient to the previous layer.</p>
 
