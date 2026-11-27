@@ -17,7 +17,7 @@ export const thereIsNoEngineerInMe = (
     </p>
 
     <p>
-      Then what’s the purpose of this life that thousands of our ancestors have given us? What do we achieve? It becomes a philosophical question. This is the question of purpose. What’s the sole purpose we should fulfil? The movie <em>WALL-E</em> (2008) would correctly predict our future, where everything you ever wanted is already there. Everything is abundant. You don’t need to do anything. I think you should just enjoy the life which your parents have given you, enjoy nature, and live in harmony and peace.
+      Then what’s the purpose of this life that thousands of our ancestors have given us? What do we achieve? It becomes a philosophical question. What’s the sole purpose we should fulfil? The movie <em>WALL-E</em> (2008) would correctly predict our future, where everything you ever wanted is already there. Everything is abundant. You don’t need to do anything. I think you should just live the life which your parents have given you, enjoy nature, and live in harmony and peace.
     </p>
 
     <p>
