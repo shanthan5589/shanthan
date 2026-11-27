@@ -1,5 +1,14 @@
 export const thereIsNoEngineerInMe = (
   <>
+    <audio
+      className="post-audio"
+      controls
+      preload="metadata"
+      aria-label="Listen to this post"
+    >
+      <source src="/audio/there-is-no-engineer-in-me.mp3" type="audio/mpeg" />
+    </audio>
+
     <p>
       So many days ago, when I decided to train an LLM, I wanted to have a data pipeline to handle large data properly so that the data could be fed to an LLM to train it. So I didn’t check all the available libraries that existed, nor did I understand all the operations that the libraries provided. What I did was generate the code for the pipeline with the help of an LLM, and I ended up reading that code to understand the logic. I don’t know why I did it. Is it because I subconsciously don’t want to put a lot of time into it? Or am I scared of experimenting and failing? Or is it because my mind was predetermined that it won’t think, as an LLM can do it in much less time? Now, since I ended up generating the code for the pipeline, I started feeling so dumb that I relied on an LLM to do this. I understand the basic functionality of the code, but I don't understand the deeper mechanics of it. Understanding just the functionality doesn’t make you a good engineer.
     </p>
