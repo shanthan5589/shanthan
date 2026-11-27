@@ -3,6 +3,7 @@ import { backpropagationPart1 } from "./backpropagation-part-1";
 import { backpropagationPart2 } from "./backpropagation-part-2";
 import { backpropagationPart3 } from "./backpropagation-part-3";
 import { mesoGPT } from "./mesogpt";
+import { thereIsNoEngineerInMe } from "./there-is-no-engineer-in-me";
 
 export interface BlogPost {
   slug: string;
@@ -16,6 +17,13 @@ export interface BlogPost {
 
 
 export const blogPosts: BlogPost[] = [
+  {
+    slug: "there-is-no-engineer-in-me",
+    title: "There is no engineer in me",
+    description: "Thoughts on engineering, AI, and purpose.",
+    date: "2026-11-27",
+    content: thereIsNoEngineerInMe,
+  },
   {
     slug: "backpropagation-part-1",
     title: "Backpropagation in Neural Networks",
