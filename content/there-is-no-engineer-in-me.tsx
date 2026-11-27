@@ -9,13 +9,13 @@ export const thereIsNoEngineerInMe = (
     </p>
 
     <p>
-      I was reading the book <em>Just for Fun: The Story of an Accidental Revolutionary</em> by Linus Torvalds, and I was mind-blown by the amount of technical knowledge he had when he was my age. When no LLMs existed, the only way to learn was to fuck up and learn the hard way by encountering so many errors. Now it's completely different. I am scared to fuck up and I am scared to learn the hard way. I am having these kinds of thoughts in my head. At this point, I feel I am in no way meeting some basic requirements of an engineer. I don't feel like an engineer; I feel like a meat proxy between an AI model and the actual codebase.
+      I was reading the book <em>Just for Fun: The Story of an Accidental Revolutionary</em> by Linus Torvalds, and I was mind-blown by the amount of technical knowledge he had when he was my age. When no LLMs existed, the only way to learn was to fuck up and learn the hard way by encountering so many errors. Now it's completely different. I am not comfortable breaking things and learning the hard way. At this point, I feel I am in no way meeting some basic requirements of an engineer. I don't feel like an engineer; I feel like a meat proxy between an AI model and the actual codebase.
     </p>
 
     <p>
-      Engineering is about making things work and finding creative solutions, but I feel there is no engineer in me, and I am not comfortable failing and seeing a lot of errors in my console. What does it take to become a good engineer? Where and how do I prove to myself that the neural nets in my brain are good enough for idea generation? I feel like my neural pathways are weakening and just breaking apart.
+      Engineering is about making things work and finding creative solutions, but I feel there is no engineer in me, and I am not comfortable failing and seeing a lot of errors in my console. 
     </p>
-
+    
     <p>
       When I started learning about AI and Large Language Models, I realized that the human brain, the way it is, is the most efficient computer in the existing universe. It consumes around 20 watts of power, whereas modern GPUs that serve AI models consume on the order of several hundreds of watts to mimic human-level intelligence (in certain areas, and probably in all areas in the coming future—AGI). The intelligence-per-watt ratio is very low in current LLMs, and is very high in a human brain. Assuming that there is no extraterrestrial life out there in other galaxies—or even if they exist, assuming that they won't exhibit a higher IQ than an average human brain—then the human brain is by far the most efficient machine there is. Our evolution through millions of years has shaped us. Markets and companies are catching up with the pace at which this technology is being developed.
     </p>
@@ -25,11 +25,11 @@ export const thereIsNoEngineerInMe = (
     </p>
 
     <p>
-      The only thing which rather belongs to us humans is music. It’s something which can’t be taken away from us. Music is a beautiful art which I really love listening to. I think it has the power to shape my thoughts and opinions, and take me to a whole new world. I feel music comes from us; it represents the joys and complexities of a human life, and I feel it’s something that shouldn’t be taken away from us by AI. Music solely comes from our heart and our brain, and is a result of unique circumstances and a unique set of neural connections and pathways which led an artist to make something so unique.
+      The only thing which rather belongs to us humans is music. It’s something which can’t be taken away from us. Music is a beautiful art which I really love listening to. I think it has the power to shape my thoughts and opinions, and take me to a whole new world. I feel music comes from us; it represents the joys and complexities of a human life, and I feel it’s something that shouldn’t be taken away from us by AI. Music solely comes from our heart and our brain, and is the result of personal experiences and circumstances that lead an artist to make something so unique.
     </p>
 
     <p>
-      I can compare the music made by a very creative artist to a genius mathematician or a physicist who can come up with unique solutions to a difficult problem or think in a way that would forever change our understanding of our universe and reality. Einstein is a creative genius. Why do I call him a genius? His understanding and his mere creative thinking gave birth to some ideas which completely changed our understanding of this universe forever. In the position paper “LLMs Can't Jump,” it’s stated that LLMs cannot come up with such unique perspectives on reality like Einstein did, because current LLMs lack the capabilities to run internal world simulations and cannot experience reality the way we do. In the coming future, there is a fair amount of chance that LLMs can come up with some mind-bending theories.
+      I can compare the music made by a very creative artist to a genius mathematician or a physicist who can come up with unique solutions to a difficult problem or think in a way that would forever change our understanding of our universe and reality. Einstein is a creative genius. His understanding and his mere creative thinking gave birth to some ideas which completely changed our understanding of this universe forever. In the position paper “LLMs Can't Jump,” it’s stated that LLMs cannot come up with such unique perspectives on reality like Einstein did, because current LLMs lack the capabilities to run internal world simulations and cannot experience reality the way we do. In the coming future, there is a fair amount of chance that LLMs can come up with some mind-bending theories.
     </p>
 
     <p>
