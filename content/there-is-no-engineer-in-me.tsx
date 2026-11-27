@@ -9,7 +9,7 @@ export const thereIsNoEngineerInMe = (
     </p>
 
     <p>
-      Engineering is about making things work and finding creative solutions, but I feel there is no engineer in me, and I am not comfortable failing and seeing a lot of errors in my console. Who am I? What do I use my brain for? What does it take to become a good engineer? Where and how do I prove to myself that the neural nets in my brain are good enough for idea generation? I feel like my neural pathways are weakening and just breaking apart.
+      Engineering is about making things work and finding creative solutions, but I feel there is no engineer in me, and I am not comfortable failing and seeing a lot of errors in my console. What does it take to become a good engineer? Where and how do I prove to myself that the neural nets in my brain are good enough for idea generation? I feel like my neural pathways are weakening and just breaking apart.
     </p>
 
     <p>
