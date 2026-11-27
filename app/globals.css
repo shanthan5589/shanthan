@@ -291,12 +291,225 @@ a:focus-visible {
   margin-bottom: 40px;
 }
 
-.post-audio {
-  display: block;
+.ap {
+  --bg: #f1f3f4;
+  --fg: #202124;
+  --track: #c4c7c9;
+  --fill: #5f6368;
+
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 0;
   width: 100%;
+  max-width: 900px;
+  height: 54px;
   margin-bottom: 30px;
+  padding: 0 12px 0 14px;
+  background: var(--bg);
+  color: var(--fg);
+  border-radius: 999px;
+  font: 400 14px/1 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-variant-numeric: tabular-nums;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
+.ap *,
+.ap *::before,
+.ap *::after {
+  box-sizing: border-box;
+}
+
+.ap .btn {
+  all: unset;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  flex: none;
+  border-radius: 50%;
+  cursor: pointer;
+  color: var(--fg);
+}
+
+.ap .btn:hover {
+  background: rgba(0, 0, 0, 0.07);
+}
+
+.ap .btn:focus-visible {
+  outline: 2px solid #1a73e8;
+  outline-offset: 2px;
+}
+
+.ap svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+  display: block;
+}
+
+.ap .icon-pause,
+.ap .icon-muted {
+  display: none;
+}
+
+.ap.is-playing .icon-play {
+  display: none;
+}
+
+.ap.is-playing .icon-pause {
+  display: block;
+}
+
+.ap.is-muted .icon-vol {
+  display: none;
+}
+
+.ap.is-muted .icon-muted {
+  display: block;
+}
+
+.ap .time {
+  flex: none;
+  white-space: nowrap;
+  margin-left: 6px;
+}
+
+.ap .more {
+  margin-left: 2px;
+}
+
+.ap .seek {
+  -webkit-appearance: none;
+  appearance: none;
+  flex: 1;
+  min-width: 0;
+  height: 24px;
+  margin: 0 14px;
+  background: transparent;
+  cursor: pointer;
+  --pct: 0%;
+}
+
+.ap .seek::-webkit-slider-runnable-track {
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(
+    to right,
+    var(--fill) var(--pct),
+    var(--track) var(--pct)
+  );
+}
+
+.ap .seek::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 7px;
+  height: 7px;
+  margin-top: -2px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--fill);
+  transition: transform 0.12s;
+}
+
+.ap .seek:hover::-webkit-slider-thumb {
+  transform: scale(1.7);
+}
+
+.ap .seek::-moz-range-track {
+  height: 3px;
+  border-radius: 2px;
+  background: var(--track);
+}
+
+.ap .seek::-moz-range-progress {
+  height: 3px;
+  border-radius: 2px;
+  background: var(--fill);
+}
+
+.ap .seek::-moz-range-thumb {
+  width: 7px;
+  height: 7px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--fill);
+}
+
+.ap .menu {
+  position: absolute;
+  right: 14px;
+  top: calc(100% + 6px);
+  min-width: 190px;
+  padding: 6px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.18);
+  display: none;
+  z-index: 10;
+}
+
+.ap.menu-open .menu {
+  display: block;
+}
+
+.ap .menu a,
+.ap .menu a:visited,
+.ap .menu button {
+  all: unset;
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  color: var(--fg);
+}
+
+.ap .menu a:hover,
+.ap .menu button:hover {
+  color: var(--fg);
+  text-decoration: none;
+  background: #f1f3f4;
+}
+
+.ap .menu .label {
+  padding: 8px 12px 4px;
+  font-size: 12px;
+  color: #5f6368;
+}
+
+.ap .menu button[aria-checked="true"]::before {
+  content: "\2713\00a0\00a0";
+}
+
+.ap .menu button[aria-checked="false"]::before {
+  content: "\00a0\00a0\00a0\00a0";
+}
+
+@media (max-width: 480px) {
+  .ap {
+    height: 48px;
+    padding: 0 8px 0 10px;
+    font-size: 13px;
+  }
+
+  .ap .time {
+    margin-left: 4px;
+  }
+
+  .ap .seek {
+    margin: 0 10px;
+  }
+
+  .ap .more {
+    margin-left: 0;
+  }
+}
 .post-body h2 {
   padding-top: 0;
   margin-top: 48px;
