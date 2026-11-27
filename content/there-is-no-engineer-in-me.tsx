@@ -5,7 +5,7 @@ export const thereIsNoEngineerInMe = (
     </p>
 
     <p>
-      I was reading the book Just for Fun: The Story of an Accidental Revolutionary by Linus Torvalds, and I was mind-blown by the amount of technical knowledge he had when he was my age, and when there were no LLMs that existed. It’s easy to fuck up and learn the hard way by encountering so many errors. Now it's completely different—I am scared to fuck up and I am scared to learn the hard way. I am having these kinds of thoughts in my head. At this point, I feel I am in no way meeting some basic requirements of an engineer. I don't feel like an engineer; I feel like a meat proxy between an AI model and the actual codebase.
+      I was reading the book <em>Just for Fun: The Story of an Accidental Revolutionary</em> by Linus Torvalds, and I was mind-blown by the amount of technical knowledge he had when he was my age. When no LLMs existed, the only way to learn was to fuck up and learn the hard way by encountering so many errors. Now it's completely different. I am scared to fuck up and I am scared to learn the hard way. I am having these kinds of thoughts in my head. At this point, I feel I am in no way meeting some basic requirements of an engineer. I don't feel like an engineer; I feel like a meat proxy between an AI model and the actual codebase.
     </p>
 
     <p>
@@ -17,7 +17,7 @@ export const thereIsNoEngineerInMe = (
     </p>
 
     <p>
-      Then what’s the purpose of living this life that thousands of our ancestors have given us? What are we doing living on this planet? What do we achieve? It becomes a philosophical question. This is the question of purpose. What’s the sole purpose we should fulfil? The movie WALL-E (2008) would correctly predict our future, where everything you ever wanted is already there. Everything is abundant. You don’t need to do anything. I think you should just enjoy the life which God (supposedly your parents) have given you, enjoy nature, and live in harmony and peace.
+      Then what’s the purpose of living this life that thousands of our ancestors have given us? What are we doing living on this planet? What do we achieve? It becomes a philosophical question. This is the question of purpose. What’s the sole purpose we should fulfil? The movie <em>WALL-E</em> (2008) would correctly predict our future, where everything you ever wanted is already there. Everything is abundant. You don’t need to do anything. I think you should just enjoy the life which God (supposedly your parents) have given you, enjoy nature, and live in harmony and peace.
     </p>
 
     <p>
